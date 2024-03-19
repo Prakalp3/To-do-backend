@@ -1,0 +1,3 @@
+com\app\test\repository\TodoRepositoryTest.class
+com\app\test\RestfulWebServicesApplicationTests.class
+com\app\test\service\TodoServiceTest.class
