@@ -2,6 +2,8 @@ package com.app.todo.service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import com.app.todo.model.Todo;
@@ -40,11 +42,23 @@ public class TodoService {
 		return todo;
 	}
 
-	public void updateTodo(Todo todo) {
-		Todo todoData = todoRepository.findById(todo.getId()).get();
-		todoData.setDescription(todo.getDescription());
-		todoData.setDone(todo.isDone());
-		todoData.setTargetDate(todo.getTargetDate());
-		todoRepository.save(todo);
+	public void updateTodo(Todo todo, int id) {
+
+		Optional<Todo> todoData = todoRepository.findById(todo.getId());
+		if(todoData.isPresent()){
+			Todo updatedTodo =todoData.get();
+			updatedTodo.setDescription(todo.getDescription());
+			updatedTodo.setDone(todo.isDone());
+			updatedTodo.setTargetDate(todo.getTargetDate());
+			todoRepository.save(updatedTodo);
+			return;
+		}
+		Todo newTodo = new Todo();
+		newTodo.setId(2);
+		newTodo.setUsername(todo.getUsername());
+		newTodo.setDescription(todo.getDescription());
+		newTodo.setTargetDate(todo.getTargetDate());
+		newTodo.setDone(todo.isDone());
+		todoRepository.save(newTodo);
 	}
 }

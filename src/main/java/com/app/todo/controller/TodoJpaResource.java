@@ -46,7 +46,7 @@ public class TodoJpaResource {
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	public Todo updateTodo(@PathVariable String username,
 			@PathVariable int id, @RequestBody Todo todo) {
-		todoService.updateTodo(todo);
+		todoService.updateTodo(todo, id);
 		return todo;
 	}
 

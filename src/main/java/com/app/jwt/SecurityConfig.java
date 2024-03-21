@@ -39,7 +39,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/auth/welcome", "/auth/addNewUser", "/auth/authenticate").permitAll()
                 .and()
-                .authorizeHttpRequests().requestMatchers("/users/**").authenticated()
+                .authorizeHttpRequests().requestMatchers("/users/**", "/user/**").authenticated()
                 .and()
                 .authorizeHttpRequests().requestMatchers("/auth/user/**").authenticated()
                 .and()

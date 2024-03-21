@@ -42,14 +42,14 @@ public class TodoResource {
 	@PutMapping("/users/{username}/todos/{id}")
 	public Todo updateTodo(@PathVariable String username,
 			@PathVariable int id, @RequestBody Todo todo) {
-		todoService.updateTodo(todo);
+		todoService.updateTodo(todo, id);
 		return todo;
 	}
 
 	@PostMapping("/users/{username}/todos")
 	public Todo createTodo(@PathVariable String username,
 			 @RequestBody Todo todo) {
-		Todo createdTodo = todoService.addTodo(username, todo.getDescription(), 
+		Todo createdTodo = todoService.addTodo(username, todo.getDescription(),
 				todo.getTargetDate(),todo.isDone() );
 		
 		return createdTodo;
